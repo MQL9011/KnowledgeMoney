@@ -10,9 +10,8 @@ from googleapiclient.discovery import build
 g_cse_id = ''
 g_cse_api_key = ''
 
+questions = []
 
-#question = '西方餐桌礼仪中基本原则上哪个手拿刀'
-#answers = ["右手","左手","看刀摆放"]
 
 def google_search(query, start):
     service = build("customsearch", "v1", developerKey=g_cse_api_key)
@@ -66,7 +65,7 @@ def predict(metric1, metric2, answers):
 
 
 def get_answer():
-    resp = requests.get('http://htpmsg.jiecaojingxuan.com/msg/current').text
+    resp = requests.get('http://htpmsg.jiecaojingxuan.com/msg/current',timeout=4).text
     resp_dict = json.loads(resp)
     if resp_dict['msg'] == 'no data':
         return 'Waiting for question...'
@@ -74,10 +73,14 @@ def get_answer():
         resp_dict = eval(str(resp))
         question = resp_dict['data']['event']['desc']
         question = question[question.find('.') + 1:question.find('?')]
-        answers = eval(resp_dict['data']['event']['options'])
-        met1 = metric1Func(question, answers)
-        met2 = metric2Func(question, answers)
-        return predict(met1, met2, answers)
+        if question not in questions:
+            questions.append(question)
+            answers = eval(resp_dict['data']['event']['options'])
+            met1 = metric1Func(question, answers)
+            met2 = metric2Func(question, answers)
+            return predict(met1, met2, answers)
+        else:
+            return 'Waiting for new question...'
 
 
 def main():
