@@ -6,7 +6,7 @@
 ![sc2](https://raw.githubusercontent.com/se4/cddh/master/screenshot/screenshot2.png)
 
 ## 待办
-
+- [ ] 否定副词（例如：不）作降权搜索
 - [ ] 网页版
 - [ ] 群聊机器人版本
 
