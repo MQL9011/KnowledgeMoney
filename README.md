@@ -2,6 +2,9 @@
 
 **请勿用于淘宝用途。**
 
+## 当前效果
+![sc2](https://raw.githubusercontent.com/se4/cddh/master/screenshot/screenshot2.png)
+
 ## 待办
 
 - [ ] 网页版

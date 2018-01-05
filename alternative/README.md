@@ -50,7 +50,7 @@ pip install pytesseract
 box参数设置：手机截一张答题时候的截图，电脑上1比1打开手机截图，用QQ截图分别查看 (黄，红，绿，蓝) 像素长度。
 
 
-![enter image description here]()
+![sc1](https://raw.githubusercontent.com/se4/cddh/master/screenshot/screenshot1.jpg)
 
 
 
@@ -62,9 +62,3 @@ box参数设置：手机截一张答题时候的截图，电脑上1比1打开手
 cd J:/
 python cddh.py
 ```
-
-## 待办
-- [ ]基于Rest接口获取题目和选项
-- [ ]参考[I Hacked HQ Trivia But Here’s How They Can Stop Me](https://hackernoon.com/i-hacked-hq-trivia-but-heres-how-they-can-stop-me-68750ed16365)实现答案决策
-- [ ]adb自动点击答案
-- [ ]Docker化的决策助手，以rest-api提供
