@@ -1,9 +1,22 @@
-# 冲顶大会自助决策(Python3)
 
-**有的人，文笔稀烂，人品稀烂。**
+>环境:python3
 
-## 待办
-- [ ] 少上网
+# 冲顶大会快速搜索
 
-## 捐赠
-ETH：0x4fbE91279EDFAa6a477a20BdDD6606457ed5B856
+
+
+# 食用办法
+```
+pip3 install -r requirements.txt
+python3 do.py
+```
+
+####默认搜题目,若要连选项一起搜,修改代码中的
+```
+#只搜题目
+start_browser_and_search(search_wd)
+#搜题目+选项
+# start_browser_and_search(search_wd)
+```
+
+####题目API接口只有在开始时才有数据,基本上可以比app上提前5秒左右看到题目
