@@ -110,7 +110,7 @@ def start_browser_and_search(search_wd):
 def main():
     while True:
         print(time.strftime('%H:%M:%S',time.localtime(time.time())))
-        start_browser_and_search('二的六次方等于几')
+        # start_browser_and_search('二的六次方等于几')
         get_answer()
         time.sleep(1)
 
