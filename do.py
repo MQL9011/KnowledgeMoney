@@ -6,6 +6,9 @@ import time
 import json
 import requests
 from googleapiclient.discovery import build
+import webbrowser
+from urllib import parse
+import urllib.parse
 
 g_cse_id = ''
 g_cse_api_key = ''
@@ -25,7 +28,7 @@ def metric1Func(question, answers):
     items = str(res['items']).lower()
     met1[0] = items.count(answers[0].lower())
     met1[1] = items.count(answers[1].lower())
-    met1[2] = items.count(answers[2].lower()) 
+    met1[2] = items.count(answers[2].lower())
     return met1
 
 
@@ -72,22 +75,44 @@ def get_answer():
     else:
         resp_dict = eval(str(resp))
         question = resp_dict['data']['event']['desc']
+
         question = question[question.find('.') + 1:question.find('?')]
         if question not in questions:
             questions.append(question)
             answers = eval(resp_dict['data']['event']['options'])
-            met1 = metric1Func(question, answers)
-            met2 = metric2Func(question, answers)
-            return predict(met1, met2, answers)
+            search_wd = question + answers[0] + answers[1] + answers[2]
+            print(question,answers[0],answers[1],answers[2])
+
+            #只搜题目
+            start_browser_and_search(question)
+
+            #搜题目+选项
+            # start_browser_and_search(search_wd)
+
+            # print(question)
+            # met1 = metric1Func(question, answers)
+            # met2 = metric2Func(question, answers)
+            # return predict(met1, met2, answers)
+
+
         else:
             return 'Waiting for new question...'
+
+def start_browser_and_search(search_wd):
+    print(search_wd)
+    s_url = 'https://www.baidu.com/s?wd=' + search_wd
+    search_question = urllib.parse.quote(search_wd)
+    webbrowser.open('https://www.baidu.com/s?wd=' + search_question)
+    input('按任意键继续')
+
 
 
 def main():
     while True:
         print(time.strftime('%H:%M:%S',time.localtime(time.time())))
-        print(get_answer())
+        get_answer()
         time.sleep(1)
+
 
 
 if __name__ == '__main__':
