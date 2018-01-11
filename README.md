@@ -14,7 +14,8 @@ python3 do.py
 >默认搜题目,若要连选项一起搜,修改代码中的
 ```
 #只搜题目
-start_browser_and_search(search_wd)
+start_browser_and_search(question)
+
 #搜题目+选项
 # start_browser_and_search(search_wd)
 ```
