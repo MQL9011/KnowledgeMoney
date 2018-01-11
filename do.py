@@ -81,8 +81,10 @@ def get_answer():
             questions.append(question)
             answers = eval(resp_dict['data']['event']['options'])
             search_wd = question + answers[0] + answers[1] + answers[2]
-            print(question,answers[0],answers[1],answers[2])
-
+            print(question)
+            print('1 %s'% answers[0])
+            print('2 %s'% answers[1])
+            print('3 %s'% answers[2])
             #只搜题目
             start_browser_and_search(question)
 
@@ -93,7 +95,6 @@ def get_answer():
             # met1 = metric1Func(question, answers)
             # met2 = metric2Func(question, answers)
             # return predict(met1, met2, answers)
-
 
         else:
             return 'Waiting for new question...'
