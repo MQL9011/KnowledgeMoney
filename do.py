@@ -11,9 +11,6 @@ import urllib.parse
 from threading import Thread
 import methods
 
-g_cse_id = ''
-g_cse_api_key = ''
-
 questions = []
 
 def get_answer():
@@ -30,23 +27,18 @@ def get_answer():
             questions.append(question)
             answers = eval(resp_dict['data']['event']['options'])
             search_wd = question + answers[0] + answers[1] + answers[2]
-            print(question)
-            print('1 %s'% answers[0])
-            print('2 %s'% answers[1])
-            print('3 %s'% answers[2])
             start_browser_and_search(question, answers)
 
         else:
             return 'Waiting for new question...'
 
-# def start_browser_and_search(search_wd):
-#     print(search_wd)
-#     s_url = 'https://www.baidu.com/s?wd=' + search_wd
-#     search_question = urllib.parse.quote(search_wd)
-#     webbrowser.open('https://www.baidu.com/s?wd=' + search_question)
-#     input('按任意键继续')
+
 
 def start_browser_and_search(question, answers):
+    print(question)
+    print('1 %s'% answers[0])
+    print('2 %s'% answers[1])
+    print('3 %s'% answers[2])
     m1 = Thread(methods.run_algorithm(0, question, answers))
     m2 = Thread(methods.run_algorithm(1, question, answers))
     m3 = Thread(methods.run_algorithm(2, question, answers))
