@@ -30,7 +30,10 @@ def get_answer():
             questions.append(question)
             answers = eval(resp_dict['data']['event']['options'])
             search_wd = question + answers[0] + answers[1] + answers[2]
-            #只搜题目
+            print(question)
+            print('1 %s'% answers[0])
+            print('2 %s'% answers[1])
+            print('3 %s'% answers[2])
             start_browser_and_search(question, answers)
 
         else:
@@ -50,16 +53,27 @@ def start_browser_and_search(question, answers):
     m1.start()
     m2.start()
     m3.start()
-    input('暂停,按任意键继续')
+    input('测定已暂停,按任意键继续')
+
+def testPlay():
+    # 测试问答
+    # question = '参加第一届古代奥运会的国家有'
+    question = '以下哪个不是清华大学的代表校花'
+    # answers = ['三个', '四个', '五个']
+    answers = ['紫荆', '山茶花', '丁香']
+    print(question)
+    print('1 %s'% answers[0])
+    print('2 %s'% answers[1])
+    print('3 %s'% answers[2])
+    start_browser_and_search(question, answers)
+
 
 
 def main():
     while True:
         print(time.strftime('%H:%M:%S',time.localtime(time.time())))
-        # 测试问答
-        # start_browser_and_search(' 参加第一届古代奥运会的国家有', ['三个', '四个', '五个'])
-        # start_browser_and_search('以下哪个不是清华大学的代表校花', ['紫荆', '山茶花', '丁香'])
-        get_answer()
+        testPlay()
+        # get_answer()
         time.sleep(1)
 
 
