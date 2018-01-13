@@ -10,21 +10,55 @@ from urllib import parse
 import urllib.parse
 from threading import Thread
 from PIL import Image
+from PIL import ImageEnhance
+import pytesseract
+import os
+#mySelf Part
 import methods
 
 questions = []
-
-import os
 def getImgFromScreenCapture():
-    #常用截图参数
-    # 60, 95, 340, 280
-    # 60, 95, 340, 300
-    resutlt = os.system("screencapture -R \"60, 95, 340, 280\" ./question_screenshot.png")
-    img = Image.open("./question_screenshot.png")
-    print(img)
-    input('截图完成,按任意键继续')
-    return img
+    #常用截图参数 iphone6/6s
+    #问题的截图  60, 95, 340, 280
+    #答案一截图  95, 200, 270, 35
+    #答案二截图  95, 260, 270, 35
+    #答案三截图  95, 316, 270, 35
 
+    question = os.system("screencapture -R \"60, 95, 340, 280\" ./question_screenshot.png")
+    answer_one = os.system("screencapture -R \"95, 200, 270, 35\" ./answers_one.png")
+    answer_two = os.system("screencapture -R \"95, 260, 270, 35\" ./answers_two.png")
+    answer_thr = os.system("screencapture -R \"95, 316, 270, 35\" ./answers_thr.png")
+
+    question_img = Image.open("./question_screenshot.png")
+    answer_one_img = Image.open("./answers_one.png")
+    answer_two_img = Image.open("./answers_two.png")
+    answer_thr_img = Image.open("./answers_thr.png")
+
+    ans_one_enh = getImageFromImageEnhance(answer_one_img)
+    ans_two_enh = getImageFromImageEnhance(answer_two_img)
+    ans_thr_enh = getImageFromImageEnhance(answer_thr_img)
+
+    #使用简体中文解析图片
+    question_text = pytesseract.image_to_string(question_img, lang='chi_sim')
+    print(question_text)
+    ans_one_text = pytesseract.image_to_string(ans_one_enh, lang='chi_sim')
+    print(ans_one_text)
+    ans_two_text = pytesseract.image_to_string(ans_two_enh, lang='chi_sim')
+    print(ans_two_text)
+    ans_thr_text = pytesseract.image_to_string(ans_thr_enh, lang='chi_sim')
+    print(ans_thr_text)
+    question = question_text
+    answers = [ans_one_text, ans_two_text, ans_thr_text]
+    return question, answers
+
+def getImageFromImageEnhance(image):
+        #处理图像参数
+        enh_con = ImageEnhance.Contrast(image)
+        #对比度
+        contrast = 10.0
+        enh_image = enh_con.enhance(contrast)
+        # enh_image.show()
+        return enh_image
 
 
 
@@ -78,19 +112,42 @@ def testPlay():
     start_browser_and_search(question, answers)
 
 
-
-def main():
+def startCddh():
     while True:
         try:
             print(time.strftime('%H:%M:%S',time.localtime(time.time())))
-            getImgFromScreenCapture()
             # testPlay()
-            # get_answer()
+            get_answer()
             time.sleep(1)
         except Exception as error:
             print(error)
             time.sleep(1)
-            main()
+            startCddh()
+
+def startBWYH():
+    while True:
+        try:
+            print(time.strftime('%H:%M:%S',time.localtime(time.time())))
+            question, answers = getImgFromScreenCapture()
+            start_browser_and_search(question, answers)
+            time.sleep(1)
+        except Exception as error:
+            print(error)
+            time.sleep(1)
+            startBWYH()
+
+
+def main():
+    index = input(' 1.冲顶大会 \n 2.西瓜视频百万英雄 \n 3.芝士超人(开发中)\n请选择玩哪个: \n')
+    if index == '1':
+        startCddh()
+    elif index == '2':
+        startBWYH()
+    else:
+        print('重选!')
+        main()
+
+
 
 
 

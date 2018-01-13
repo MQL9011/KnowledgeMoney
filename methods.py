@@ -82,5 +82,3 @@ if __name__ == '__main__':
     question = '新装修的房子通常哪种化学物质含量会比较高?'
     choices = ['甲醛', '苯', '甲醇']
     run_algorithm(1, question, choices)
-
-
