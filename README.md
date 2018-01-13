@@ -28,15 +28,14 @@ pip3 install -r requirements.txt
 - 自行修改代码中的屏幕截图区域Frame
 
 ```
-#自行修改截图位置 "x, y, w, h "
-#问题的截图  60, 95, 340, 280
-questionLocation = "60, 95, 340, 80"
-#答案一截图  95, 200, 270, 35
-answer_one_loadtion = "95, 200, 270, 35"
-#答案二截图  95, 260, 270, 35
-answer_two_loadtion = "95, 260, 270, 35"
-#答案三截图  95, 316, 270, 35
-answer_thr_loadtion = "95, 316, 270, 35"
+
+#由于每个人屏幕尺寸不同需要自行修改截图Frame "x, y, w, h "
+#冲顶大会截图坐标
+cddh_ques_loca       = "70, 150, 310, 120"
+cddh_answer_one_loca = "100, 275, 270, 35"
+cddh_answer_two_loca = "100, 330, 270, 35"
+cddh_answer_thr_loca = "100, 376, 270, 35"
+
 ```
 
 - 运行程序
