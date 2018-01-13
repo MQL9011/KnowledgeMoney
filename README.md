@@ -46,6 +46,20 @@ brew install tesseract
 pip3 install -r requirements.txt
 ```
 
+- 自行修改代码中的屏幕截图区域Frame
+
+```
+#自行修改截图位置 "x, y, w, h "
+#问题的截图  60, 95, 340, 280
+questionLocation = "60, 95, 340, 80"
+#答案一截图  95, 200, 270, 35
+answer_one_loadtion = "95, 200, 270, 35"
+#答案二截图  95, 260, 270, 35
+answer_two_loadtion = "95, 260, 270, 35"
+#答案三截图  95, 316, 270, 35
+answer_thr_loadtion = "95, 316, 270, 35"
+```
+
 - 运行程序
 
 ```
