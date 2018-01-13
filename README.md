@@ -1,12 +1,9 @@
 
 - 环境:`python3` `pip3`  `OCR`办法目前只支持`Mac`
 
-
-
+---
 #冲顶大会快速搜索(废弃了,接口不能用,只能用OCR的办法)
 
-
----
 
 # OCR文字识别的方法,目前只支持Mac
 采用的大致原理是手机连上Mac,通过自带的QuickTime实时显示手机屏幕,具体做法可以百度「怎么用 Quick Time Player 为 iPhone 录制屏幕」
