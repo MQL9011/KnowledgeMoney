@@ -9,9 +9,24 @@ import webbrowser
 from urllib import parse
 import urllib.parse
 from threading import Thread
+from PIL import Image
 import methods
 
 questions = []
+
+import os
+def getImgFromScreenCapture():
+    #常用截图参数
+    # 60, 95, 340, 280
+    # 60, 95, 340, 300
+    resutlt = os.system("screencapture -R \"60, 95, 340, 280\" ./question_screenshot.png")
+    img = Image.open("./question_screenshot.png")
+    print(img)
+    input('截图完成,按任意键继续')
+    return img
+
+
+
 
 def get_answer():
     resp = requests.get('http://htpmsg.jiecaojingxuan.com/msg/current',timeout=4).text
@@ -45,7 +60,10 @@ def start_browser_and_search(question, answers):
     m1.start()
     m2.start()
     m3.start()
-    input('测定已暂停,按任意键继续')
+    input('已暂停,按任意键继续')
+
+
+
 
 def testPlay():
     # 测试问答
@@ -65,8 +83,9 @@ def main():
     while True:
         try:
             print(time.strftime('%H:%M:%S',time.localtime(time.time())))
+            getImgFromScreenCapture()
             # testPlay()
-            get_answer()
+            # get_answer()
             time.sleep(1)
         except Exception as error:
             print(error)
