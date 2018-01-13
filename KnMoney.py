@@ -70,7 +70,7 @@ def getImageFromImageEnhance(image):
         #处理图像参数
         enh_con = ImageEnhance.Contrast(image)
         #对比度
-        contrast = 10.0
+        contrast = 20.0
         enh_image = enh_con.enhance(contrast)
         # enh_image.show()
         return enh_image
