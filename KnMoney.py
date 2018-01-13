@@ -11,14 +11,6 @@ import urllib.parse
 from threading import Thread
 from PIL import Image
 import methods
-from aip import AipOcr
-
-""" 你的 APPID AK SK """
-APP_ID = '你的 App ID'
-API_KEY = '你的 Api Key'
-SECRET_KEY = '你的 Secret Key'
-
-client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
 
 questions = []
 
