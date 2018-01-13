@@ -16,20 +16,30 @@ import os
 #mySelf Part
 import methods
 
-questions = []
-def getImgFromScreenCapture():
-    #常用截图参数 iphone6/6s
-    #问题的截图  60, 95, 340, 280
-    #答案一截图  95, 200, 270, 35
-    #答案二截图  95, 260, 270, 35
-    #答案三截图  95, 316, 270, 35
 
-    question = os.system("screencapture -R \"60, 95, 340, 280\" ./question_screenshot.png")
-    answer_one = os.system("screencapture -R \"95, 200, 270, 35\" ./answers_one.png")
-    answer_two = os.system("screencapture -R \"95, 260, 270, 35\" ./answers_two.png")
-    answer_thr = os.system("screencapture -R \"95, 316, 270, 35\" ./answers_thr.png")
+#自行修改截图位置 "x, y, w, h "
+#问题的截图  60, 95, 340, 280
+questionLocation = "60, 95, 340, 80"
+#答案一截图  95, 200, 270, 35
+answer_one_loadtion = "95, 200, 270, 35"
+#答案二截图  95, 260, 270, 35
+answer_two_loadtion = "95, 260, 270, 35"
+#答案三截图  95, 316, 270, 35
+answer_thr_loadtion = "95, 316, 270, 35"
+
+questions = []
+
+def getImgFromScreenCapture():
+
+
+    question = os.system("screencapture -R \" {} \" ./question_screenshot.png".format(questionLocation))
+
+    answer_one = os.system("screencapture -R \"{}\" ./answers_one.png".format(answer_one_loadtion))
+    answer_two = os.system("screencapture -R \"{}\" ./answers_two.png".format(answer_two_loadtion))
+    answer_thr = os.system("screencapture -R \"{}\" ./answers_thr.png".format(answer_thr_loadtion))
 
     question_img = Image.open("./question_screenshot.png")
+    question_img.show()
     answer_one_img = Image.open("./answers_one.png")
     answer_two_img = Image.open("./answers_two.png")
     answer_thr_img = Image.open("./answers_thr.png")
@@ -40,13 +50,13 @@ def getImgFromScreenCapture():
 
     #使用简体中文解析图片
     question_text = pytesseract.image_to_string(question_img, lang='chi_sim')
-    print(question_text)
+    # print(question_text)
     ans_one_text = pytesseract.image_to_string(ans_one_enh, lang='chi_sim')
-    print(ans_one_text)
+    # print(ans_one_text)
     ans_two_text = pytesseract.image_to_string(ans_two_enh, lang='chi_sim')
-    print(ans_two_text)
+    # print(ans_two_text)
     ans_thr_text = pytesseract.image_to_string(ans_thr_enh, lang='chi_sim')
-    print(ans_thr_text)
+    # print(ans_thr_text)
     question = question_text
     answers = [ans_one_text, ans_two_text, ans_thr_text]
     return question, answers

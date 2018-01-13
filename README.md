@@ -21,8 +21,11 @@ python3 do.py
 
 - 题目API接口只有在开始时才有数据,基本上可以比app上提前5秒左右看到题目  
 
---
-# 其他OCR的食用办法
+
+---
+
+# OCR文字识别的方法,目前只支持Mac
+采用的大致原理是手机连上Mac,通过自带的QuickTime实时显示手机屏幕,具体做法可以百度「怎么用 Quick Time Player 为 iPhone 录制屏幕」
 
 - 安装[google的文字识别引擎](https://github.com/tesseract-ocr/tesseract/wiki)
 
