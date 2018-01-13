@@ -1,7 +1,7 @@
 
 
 # 冲顶大会快速搜索
-- 环境:python3
+- 环境:`python3` `pip3`  `Mac`或`Win`都能跑
 
 
 
