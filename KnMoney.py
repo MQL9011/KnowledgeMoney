@@ -1,6 +1,26 @@
 ﻿# coding: utf-8
-# quote from kmaiya/HQAutomator
-# 谷歌搜索部分原版搬运，未做修改
+
+#需要自行修改截图Frame "x, y, w, h "
+#冲顶大会截图坐标
+cddh_ques_loca       = "70, 150, 310, 120"
+cddh_answer_one_loca = "100, 275, 270, 35"
+cddh_answer_two_loca = "100, 330, 270, 35"
+cddh_answer_thr_loca = "100, 376, 270, 35"
+
+#百万英雄截图坐标
+bwyy_ques_loca       = "70, 115, 310, 130"
+bwyy_answer_one_loca = "100, 265, 270, 35"
+bwyy_answer_two_loca = "100, 330, 270, 35"
+bwyy_answer_thr_loca = "100, 390, 270, 35"
+
+#芝士超人截图坐标
+zscr_ques_loca       = "70, 95, 310, 90"
+zscr_answer_one_loca = "100, 195, 270, 35"
+zscr_answer_two_loca = "100, 255, 270, 35"
+zscr_answer_thr_loca = "100, 315, 270, 35"
+
+#other
+questions = []
 
 import time
 import json
@@ -16,30 +36,15 @@ import os
 #mySelf Part
 import methods
 
+def getImgFromScreenCapture(ques, ans_one, ans_two, ans_thr):
+    question = os.system("screencapture -R \" {} \" ./question_screenshot.png".format(ques))
 
-#自行修改截图位置 "x, y, w, h "
-#问题的截图  60, 95, 340, 280
-questionLocation = "60, 95, 340, 80"
-#答案一截图  95, 200, 270, 35
-answer_one_loadtion = "95, 200, 270, 35"
-#答案二截图  95, 260, 270, 35
-answer_two_loadtion = "95, 260, 270, 35"
-#答案三截图  95, 316, 270, 35
-answer_thr_loadtion = "95, 316, 270, 35"
-
-questions = []
-
-def getImgFromScreenCapture():
-
-
-    question = os.system("screencapture -R \" {} \" ./question_screenshot.png".format(questionLocation))
-
-    answer_one = os.system("screencapture -R \"{}\" ./answers_one.png".format(answer_one_loadtion))
-    answer_two = os.system("screencapture -R \"{}\" ./answers_two.png".format(answer_two_loadtion))
-    answer_thr = os.system("screencapture -R \"{}\" ./answers_thr.png".format(answer_thr_loadtion))
+    answer_one = os.system("screencapture -R \"{}\" ./answers_one.png".format(ans_one))
+    answer_two = os.system("screencapture -R \"{}\" ./answers_two.png".format(ans_two))
+    answer_thr = os.system("screencapture -R \"{}\" ./answers_thr.png".format(ans_thr))
 
     question_img = Image.open("./question_screenshot.png")
-    question_img.show()
+
     answer_one_img = Image.open("./answers_one.png")
     answer_two_img = Image.open("./answers_two.png")
     answer_thr_img = Image.open("./answers_thr.png")
@@ -107,8 +112,6 @@ def start_browser_and_search(question, answers):
     input('已暂停,按任意键继续')
 
 
-
-
 def testPlay():
     # 测试问答
     # question = '参加第一届古代奥运会的国家有'
@@ -121,38 +124,30 @@ def testPlay():
     print('3 %s'% answers[2])
     start_browser_and_search(question, answers)
 
-
-def startCddh():
+def startPlay(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_thr_loadtion):
     while True:
         try:
             print(time.strftime('%H:%M:%S',time.localtime(time.time())))
-            # testPlay()
-            get_answer()
-            time.sleep(1)
-        except Exception as error:
-            print(error)
-            time.sleep(1)
-            startCddh()
-
-def startBWYH():
-    while True:
-        try:
-            print(time.strftime('%H:%M:%S',time.localtime(time.time())))
-            question, answers = getImgFromScreenCapture()
+            question, answers = getImgFromScreenCapture(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_thr_loadtion)
             start_browser_and_search(question, answers)
             time.sleep(1)
         except Exception as error:
             print(error)
             time.sleep(1)
-            startBWYH()
+            startPlay()
 
 
 def main():
-    index = input(' 1.冲顶大会 \n 2.西瓜视频百万英雄 \n 3.芝士超人(开发中)\n请选择玩哪个: \n')
+    index = input(' 1.冲顶大会 \n 2.百万英雄 \n 3.芝士超人\n请选择玩哪个: \n')
     if index == '1':
-        startCddh()
+        input('冲顶大会_题目出现后按回车开始识别!')
+        startPlay(cddh_ques_loca, cddh_answer_one_loca, cddh_answer_two_loca, cddh_answer_thr_loca)
     elif index == '2':
-        startBWYH()
+        input('百万英雄_题目出现后按回车开始识别!')
+        startPlay(bwyy_ques_loca, bwyy_answer_one_loca, bwyy_answer_two_loca, bwyy_answer_thr_loca)
+    elif index == '3':
+        input('芝士超人_题目出现后按回车开始识别!')
+        startPlay(zscr_ques_loca, zscr_answer_one_loca, zscr_answer_two_loca, zscr_answer_thr_loca)
     else:
         print('重选!')
         main()
