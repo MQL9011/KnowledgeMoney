@@ -63,10 +63,16 @@ def testPlay():
 
 def main():
     while True:
-        print(time.strftime('%H:%M:%S',time.localtime(time.time())))
-        # testPlay()
-        get_answer()
-        time.sleep(1)
+        try:
+            print(time.strftime('%H:%M:%S',time.localtime(time.time())))
+            # testPlay()
+            get_answer()
+            time.sleep(1)
+        except Exception as error:
+            print(error)
+            time.sleep(1)
+            main()
+
 
 
 
