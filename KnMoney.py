@@ -23,6 +23,7 @@ zscr_answer_thr_loca = "100, 315, 270, 35"
 questions = []
 
 import time
+import datetime
 import json
 import requests
 import webbrowser
@@ -53,16 +54,17 @@ def getImgFromScreenCapture(ques, ans_one, ans_two, ans_thr):
     ans_thr_enh  = getImageFromImageEnhance(answer_thr_img)
 
     #使用简体中文解析图片
+    print('OCR  ' + datetime.datetime.now().strftime('%H:%M:%S'))
     question_text = pytesseract.image_to_string(question_enh, lang='chi_sim')
     # print(question_text)
-    ans_one_text = pytesseract.image_to_string(ans_one_enh, lang='chi_sim')
+    # ans_one_text = pytesseract.image_to_string(ans_one_enh, lang='chi_sim')
     # print(ans_one_text)
-    ans_two_text = pytesseract.image_to_string(ans_two_enh, lang='chi_sim')
+    # ans_two_text = pytesseract.image_to_string(ans_two_enh, lang='chi_sim')
     # print(ans_two_text)
-    ans_thr_text = pytesseract.image_to_string(ans_thr_enh, lang='chi_sim')
+    # ans_thr_text = pytesseract.image_to_string(ans_thr_enh, lang='chi_sim')
     # print(ans_thr_text)
     question = question_text
-    answers = [ans_one_text, ans_two_text, ans_thr_text]
+    answers = ['','','']
     return question, answers
 
 def getImageFromImageEnhanceForQuestion(image):
@@ -117,7 +119,8 @@ def get_answer():
 
 
 def start_browser_and_search(question, answers):
-    print(question)
+    print('拉起浏览器    ' + datetime.datetime.now().strftime('%H:%M:%S'))
+    print('问题:  ' + question)
     print('1 %s'% answers[0])
     print('2 %s'% answers[1])
     print('3 %s'% answers[2])
@@ -145,7 +148,7 @@ def testPlay():
 def startPlay(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_thr_loadtion):
     while True:
         try:
-            print(time.strftime('%H:%M:%S',time.localtime(time.time())))
+            print('开始   ' + datetime.datetime.now().strftime('%H:%M:%S'))
             question, answers = getImgFromScreenCapture(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_thr_loadtion)
             start_browser_and_search(question, answers)
             # input('%s \n %s' % (question,answers))
@@ -160,12 +163,15 @@ def main():
     index = input(' 1.冲顶大会 \n 2.百万英雄 \n 3.芝士超人\n请选择玩哪个: \n')
     if index == '1':
         input('冲顶大会_题目出现后按回车开始识别!')
+
         startPlay(cddh_ques_loca, cddh_answer_one_loca, cddh_answer_two_loca, cddh_answer_thr_loca)
     elif index == '2':
         input('百万英雄_题目出现后按回车开始识别!')
+
         startPlay(bwyy_ques_loca, bwyy_answer_one_loca, bwyy_answer_two_loca, bwyy_answer_thr_loca)
     elif index == '3':
         input('芝士超人_题目出现后按回车开始识别!')
+
         startPlay(zscr_ques_loca, zscr_answer_one_loca, zscr_answer_two_loca, zscr_answer_thr_loca)
     else:
         print('重选!')
