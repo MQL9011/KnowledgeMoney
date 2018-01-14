@@ -56,10 +56,11 @@ sharpness = 5.0
 brightness = 5.0
 ```
 
-- 这是截图后识别成文字的效果
+- 这是截图后识别成文字的效果  
 
-![image.png](http://upload-images.jianshu.io/upload_images/1755091-e9fe0a308314904a.png?
-imageMogr2/auto-orient/strip%7CimageView2/2/w/800)
+
+
+![image.png](http://upload-images.jianshu.io/upload_images/1755091-e9fe0a308314904a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800)
 
 - 这是丢进百度搜索的效果
 
