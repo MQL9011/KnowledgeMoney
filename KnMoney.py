@@ -2,22 +2,22 @@
 
 #需要自行修改截图Frame "x, y, w, h "
 #冲顶大会截图坐标
-cddh_ques_loca       = "75, 150, 310, 115"
-cddh_answer_one_loca = "103, 275, 250, 35"
-cddh_answer_two_loca = "103, 330, 250, 35"
-cddh_answer_thr_loca = "103, 376, 250, 35"
+cddh_ques_loca       = "20, 150, 310, 115"
+cddh_answer_one_loca = "45, 275, 250, 35"
+cddh_answer_two_loca = "45, 325, 250, 35"
+cddh_answer_thr_loca = "45, 375, 250, 35"
 
 #百万英雄截图坐标
-bwyy_ques_loca       = "75, 115, 310, 130"
-bwyy_answer_one_loca = "103, 265, 270, 35"
-bwyy_answer_two_loca = "103, 330, 270, 35"
-bwyy_answer_thr_loca = "103, 390, 270, 35"
+bwyy_ques_loca       = "20, 115, 310, 130"
+bwyy_answer_one_loca = "45, 265, 270, 35"
+bwyy_answer_two_loca = "45, 325, 270, 35"
+bwyy_answer_thr_loca = "45, 390, 270, 35"
 
 #芝士超人截图坐标
-zscr_ques_loca       = "70, 95, 310, 90"
-zscr_answer_one_loca = "95, 195, 270, 35"
-zscr_answer_two_loca = "95, 255, 270, 35"
-zscr_answer_thr_loca = "95, 315, 270, 35"
+zscr_ques_loca       = "15, 95, 310, 90"
+zscr_answer_one_loca = "35, 195, 270, 35"
+zscr_answer_two_loca = "35, 255, 270, 35"
+zscr_answer_thr_loca = "35, 315, 270, 35"
 
 #other
 questions = []
@@ -75,7 +75,7 @@ def getImageFromImageEnhanceForQuestion(image):
         enh_image = enh_con.enhance(contrast)
         enh_image = enh_con.enhance(sharpness)
         enh_image = enh_con.enhance(brightness)
-        enh_image.show()
+        # enh_image.show()
         return enh_image
 
 
@@ -86,11 +86,11 @@ def getImageFromImageEnhance(image):
         #对比度
         contrast = 10.0
         sharpness = 10.0
-        brightness = 10.0
+        brightness = 15.0
         enh_image = enh_con.enhance(contrast)
         enh_image = enh_con.enhance(sharpness)
         enh_image = enh_con.enhance(brightness)
-        enh_image.show()
+        # enh_image.show()
         return enh_image
 
 
@@ -147,8 +147,8 @@ def startPlay(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_th
         try:
             print(time.strftime('%H:%M:%S',time.localtime(time.time())))
             question, answers = getImgFromScreenCapture(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_thr_loadtion)
-            # start_browser_and_search(question, answers)
-            input('%s \n %s' % (question,answers))
+            start_browser_and_search(question, answers)
+            # input('%s \n %s' % (question,answers))
             time.sleep(1)
         except Exception as error:
             print(error)
