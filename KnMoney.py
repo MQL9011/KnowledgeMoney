@@ -2,22 +2,22 @@
 
 #需要自行修改截图Frame "x, y, w, h "
 #冲顶大会截图坐标
-cddh_ques_loca       = "20, 150, 310, 115"
-cddh_answer_one_loca = "45, 275, 250, 35"
-cddh_answer_two_loca = "45, 325, 250, 35"
-cddh_answer_thr_loca = "45, 375, 250, 35"
+cddh_ques_loca       = "70, 150, 310, 120"
+cddh_answer_one_loca = "100, 275, 270, 35"
+cddh_answer_two_loca = "100, 330, 270, 35"
+cddh_answer_thr_loca = "100, 376, 270, 35"
 
 #百万英雄截图坐标
-bwyy_ques_loca       = "20, 115, 310, 130"
-bwyy_answer_one_loca = "45, 265, 270, 35"
-bwyy_answer_two_loca = "45, 325, 270, 35"
-bwyy_answer_thr_loca = "45, 390, 270, 35"
+bwyy_ques_loca       = "70, 115, 310, 130"
+bwyy_answer_one_loca = "100, 265, 270, 35"
+bwyy_answer_two_loca = "100, 330, 270, 35"
+bwyy_answer_thr_loca = "100, 390, 270, 35"
 
 #芝士超人截图坐标
-zscr_ques_loca       = "15, 95, 310, 90"
-zscr_answer_one_loca = "35, 195, 270, 35"
-zscr_answer_two_loca = "35, 255, 270, 35"
-zscr_answer_thr_loca = "35, 315, 270, 35"
+zscr_ques_loca       = "70, 95, 310, 90"
+zscr_answer_one_loca = "100, 195, 270, 35"
+zscr_answer_two_loca = "100, 255, 270, 35"
+zscr_answer_thr_loca = "100, 315, 270, 35"
 
 #other
 questions = []

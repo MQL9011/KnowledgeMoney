@@ -73,9 +73,4 @@ brightness = 5.0
 
 - 部分代码出自[TopSup](https://github.com/Skyexu/TopSup)
 
-# 喜欢的话记得star哦 或 请我喝咖啡吧
-
-
-支付宝
-
-![image.png](http://upload-images.jianshu.io/upload_images/1755091-b6dbc081dd54c2e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/200)
+# 喜欢的话记得star哦
