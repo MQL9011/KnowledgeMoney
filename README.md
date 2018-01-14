@@ -44,6 +44,27 @@ cddh_answer_thr_loca = "100, 376, 270, 35"
 python3 KnMoney.py
 ```
 
+# 识别效果   
+- OCR毕竟比不上接口直接拿数据,会存在一定误差,发现识别不准是可以自行调节图像处理参数
+
+```
+#处理图像
+enh_con = ImageEnhance.Contrast(image)
+#对比度,锐度,亮度
+contrast = 2.0
+sharpness = 5.0
+brightness = 5.0
+```
+
+- 这是截图后识别成文字的效果
+
+![image.png](http://upload-images.jianshu.io/upload_images/1755091-e9fe0a308314904a.png?
+imageMogr2/auto-orient/strip%7CimageView2/2/w/800)
+
+- 这是丢进百度搜索的效果
+
+
+![image.png](http://upload-images.jianshu.io/upload_images/1755091-29976d8fb0419b5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/800)
 
 
 

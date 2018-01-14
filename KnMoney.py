@@ -68,7 +68,7 @@ def getImgFromScreenCapture(ques, ans_one, ans_two, ans_thr):
 def getImageFromImageEnhanceForQuestion(image):
         #处理图像参数
         enh_con = ImageEnhance.Contrast(image)
-        #对比度
+        #对比度,锐度,亮度
         contrast = 2.0
         sharpness = 5.0
         brightness = 5.0
@@ -83,7 +83,7 @@ def getImageFromImageEnhanceForQuestion(image):
 def getImageFromImageEnhance(image):
         #处理图像参数
         enh_con = ImageEnhance.Contrast(image)
-        #对比度
+        #对比度,锐度,亮度
         contrast = 10.0
         sharpness = 10.0
         brightness = 15.0
