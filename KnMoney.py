@@ -2,22 +2,22 @@
 
 #需要自行修改截图Frame "x, y, w, h "
 #冲顶大会截图坐标
-cddh_ques_loca       = "70, 150, 310, 120"
-cddh_answer_one_loca = "100, 275, 270, 35"
-cddh_answer_two_loca = "100, 330, 270, 35"
-cddh_answer_thr_loca = "100, 376, 270, 35"
+cddh_ques_loca       = "75, 150, 310, 115"
+cddh_answer_one_loca = "103, 275, 250, 35"
+cddh_answer_two_loca = "103, 330, 250, 35"
+cddh_answer_thr_loca = "103, 376, 250, 35"
 
 #百万英雄截图坐标
-bwyy_ques_loca       = "70, 115, 310, 130"
-bwyy_answer_one_loca = "100, 265, 270, 35"
-bwyy_answer_two_loca = "100, 330, 270, 35"
-bwyy_answer_thr_loca = "100, 390, 270, 35"
+bwyy_ques_loca       = "75, 115, 310, 130"
+bwyy_answer_one_loca = "103, 265, 270, 35"
+bwyy_answer_two_loca = "103, 330, 270, 35"
+bwyy_answer_thr_loca = "103, 390, 270, 35"
 
 #芝士超人截图坐标
 zscr_ques_loca       = "70, 95, 310, 90"
-zscr_answer_one_loca = "100, 195, 270, 35"
-zscr_answer_two_loca = "100, 255, 270, 35"
-zscr_answer_thr_loca = "100, 315, 270, 35"
+zscr_answer_one_loca = "95, 195, 270, 35"
+zscr_answer_two_loca = "95, 255, 270, 35"
+zscr_answer_thr_loca = "95, 315, 270, 35"
 
 #other
 questions = []
@@ -38,23 +38,22 @@ import methods
 
 def getImgFromScreenCapture(ques, ans_one, ans_two, ans_thr):
     question = os.system("screencapture -R \" {} \" ./question_screenshot.png".format(ques))
-
     answer_one = os.system("screencapture -R \"{}\" ./answers_one.png".format(ans_one))
     answer_two = os.system("screencapture -R \"{}\" ./answers_two.png".format(ans_two))
     answer_thr = os.system("screencapture -R \"{}\" ./answers_thr.png".format(ans_thr))
 
     question_img = Image.open("./question_screenshot.png")
-
     answer_one_img = Image.open("./answers_one.png")
     answer_two_img = Image.open("./answers_two.png")
     answer_thr_img = Image.open("./answers_thr.png")
 
-    ans_one_enh = getImageFromImageEnhance(answer_one_img)
-    ans_two_enh = getImageFromImageEnhance(answer_two_img)
-    ans_thr_enh = getImageFromImageEnhance(answer_thr_img)
+    question_enh = getImageFromImageEnhanceForQuestion(question_img)
+    ans_one_enh  = getImageFromImageEnhance(answer_one_img)
+    ans_two_enh  = getImageFromImageEnhance(answer_two_img)
+    ans_thr_enh  = getImageFromImageEnhance(answer_thr_img)
 
     #使用简体中文解析图片
-    question_text = pytesseract.image_to_string(question_img, lang='chi_sim')
+    question_text = pytesseract.image_to_string(question_enh, lang='chi_sim')
     # print(question_text)
     ans_one_text = pytesseract.image_to_string(ans_one_enh, lang='chi_sim')
     # print(ans_one_text)
@@ -66,13 +65,32 @@ def getImgFromScreenCapture(ques, ans_one, ans_two, ans_thr):
     answers = [ans_one_text, ans_two_text, ans_thr_text]
     return question, answers
 
+def getImageFromImageEnhanceForQuestion(image):
+        #处理图像参数
+        enh_con = ImageEnhance.Contrast(image)
+        #对比度
+        contrast = 2.0
+        sharpness = 5.0
+        brightness = 5.0
+        enh_image = enh_con.enhance(contrast)
+        enh_image = enh_con.enhance(sharpness)
+        enh_image = enh_con.enhance(brightness)
+        enh_image.show()
+        return enh_image
+
+
+
 def getImageFromImageEnhance(image):
         #处理图像参数
         enh_con = ImageEnhance.Contrast(image)
         #对比度
-        contrast = 20.0
+        contrast = 10.0
+        sharpness = 10.0
+        brightness = 10.0
         enh_image = enh_con.enhance(contrast)
-        # enh_image.show()
+        enh_image = enh_con.enhance(sharpness)
+        enh_image = enh_con.enhance(brightness)
+        enh_image.show()
         return enh_image
 
 
@@ -129,7 +147,8 @@ def startPlay(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_th
         try:
             print(time.strftime('%H:%M:%S',time.localtime(time.time())))
             question, answers = getImgFromScreenCapture(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_thr_loadtion)
-            start_browser_and_search(question, answers)
+            # start_browser_and_search(question, answers)
+            input('%s \n %s' % (question,answers))
             time.sleep(1)
         except Exception as error:
             print(error)
