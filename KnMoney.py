@@ -62,15 +62,38 @@ def getImgFromScreenCapture(ques, ans_one, ans_two, ans_thr):
     #使用简体中文解析图片
     print('OCR  ' + datetime.datetime.now().strftime('%H:%M:%S'))
     question_text = pytesseract.image_to_string(question_enh, lang='chi_sim')
-    # print(question_text)
-    # ans_one_text = pytesseract.image_to_string(ans_one_enh, lang='chi_sim')
-    # print(ans_one_text)
-    # ans_two_text = pytesseract.image_to_string(ans_two_enh, lang='chi_sim')
-    # print(ans_two_text)
-    # ans_thr_text = pytesseract.image_to_string(ans_thr_enh, lang='chi_sim')
-    # print(ans_thr_text)
     question = question_text
     answers = ['','','']
+    return question, answers
+
+def getImgFromScreenCaptureAgain(ques, ans_one, ans_two, ans_thr):
+    question = os.system("screencapture -R \" {} \" ./question_screenshot.png".format(ques))
+    answer_one = os.system("screencapture -R \"{}\" ./answers_one.png".format(ans_one))
+    answer_two = os.system("screencapture -R \"{}\" ./answers_two.png".format(ans_two))
+    answer_thr = os.system("screencapture -R \"{}\" ./answers_thr.png".format(ans_thr))
+
+    question_img = Image.open("./question_screenshot.png")
+    answer_one_img = Image.open("./answers_one.png")
+    answer_two_img = Image.open("./answers_two.png")
+    answer_thr_img = Image.open("./answers_thr.png")
+
+    question_enh = getImageFromImageEnhanceForQuestion(question_img)
+    ans_one_enh  = getImageFromImageEnhance(answer_one_img)
+    ans_two_enh  = getImageFromImageEnhance(answer_two_img)
+    ans_thr_enh  = getImageFromImageEnhance(answer_thr_img)
+
+    #使用简体中文解析图片
+    print('OCR  ' + datetime.datetime.now().strftime('%H:%M:%S'))
+    question_text = pytesseract.image_to_string(question_enh, lang='chi_sim')
+    # print(question_text)
+    ans_one_text = pytesseract.image_to_string(ans_one_enh, lang='chi_sim')
+    print(ans_one_text)
+    ans_two_text = pytesseract.image_to_string(ans_two_enh, lang='chi_sim')
+    print(ans_two_text)
+    ans_thr_text = pytesseract.image_to_string(ans_thr_enh, lang='chi_sim')
+    print(ans_thr_text)
+    question = question_text
+    answers = [ans_one_text, ans_two_text, ans_thr_text]
     return question, answers
 
 def getImageFromImageEnhanceForQuestion(image):
@@ -124,19 +147,28 @@ def get_answer():
 
 
 
-def start_browser_and_search(question, answers):
+def start_browser_and_search(question, answers, opBrowserFlag):
     print('拉起浏览器    ' + datetime.datetime.now().strftime('%H:%M:%S'))
     print('问题:  ' + question)
     print('1 %s'% answers[0])
     print('2 %s'% answers[1])
     print('3 %s'% answers[2])
-    m1 = Thread(methods.run_algorithm(0, question, answers))
-    m2 = Thread(methods.run_algorithm(1, question, answers))
-    m3 = Thread(methods.run_algorithm(2, question, answers))
-    m1.start()
-    m2.start()
-    m3.start()
-    input('已暂停,按任意键继续')
+    if opBrowserFlag == True:
+        print('true')
+        m1 = Thread(methods.run_algorithm(0, question, answers))
+        m2 = Thread(methods.run_algorithm(1, question, answers))
+        m3 = Thread(methods.run_algorithm(2, question, answers))
+        m1.start()
+        m2.start()
+        m3.start()
+    else:
+        print('false')
+        m2 = Thread(methods.run_algorithm(1, question, answers))
+        m3 = Thread(methods.run_algorithm(2, question, answers))
+        m2.start()
+        m3.start()
+
+
 
 
 def testPlay():
@@ -156,7 +188,10 @@ def startPlay(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_th
         try:
             print('开始   ' + datetime.datetime.now().strftime('%H:%M:%S'))
             question, answers = getImgFromScreenCapture(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_thr_loadtion)
-            start_browser_and_search(question, answers)
+            start_browser_and_search(question, answers, True)
+            question_again, answers_again = getImgFromScreenCaptureAgain(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_thr_loadtion)
+            start_browser_and_search(question, answers, False)
+            input('已暂停,按任意键继续')
             # input('%s \n %s' % (question,answers))
             time.sleep(1)
         except Exception as error:
