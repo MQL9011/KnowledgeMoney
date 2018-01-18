@@ -20,10 +20,10 @@ zscr_answer_two_loca = "100, 255, 270, 35"
 zscr_answer_thr_loca = "100, 315, 270, 35"
 
 #网易新闻截图坐标
-wyxw_ques_loca       = "90, 165, 310, 80"
-wyxw_answer_one_loca = "100, 195, 270, 35"
-wyxw_answer_two_loca = "100, 255, 270, 35"
-wyxw_answer_thr_loca = "100, 315, 270, 35"
+wyxw_ques_loca       = "90, 165, 310, 70"
+wyxw_answer_one_loca = "100, 215, 270, 35"
+wyxw_answer_two_loca = "100, 275, 270, 35"
+wyxw_answer_thr_loca = "100, 345, 270, 35"
 
 #other
 questions = []
@@ -83,17 +83,18 @@ def getImgFromScreenCaptureAgain(ques, ans_one, ans_two, ans_thr):
     ans_thr_enh  = getImageFromImageEnhance(answer_thr_img)
 
     #使用简体中文解析图片
-    print('OCR  ' + datetime.datetime.now().strftime('%H:%M:%S'))
+    # print('OCR  ' + datetime.datetime.now().strftime('%H:%M:%S'))
     question_text = pytesseract.image_to_string(question_enh, lang='chi_sim')
     # print(question_text)
     ans_one_text = pytesseract.image_to_string(ans_one_enh, lang='chi_sim')
-    print(ans_one_text)
+    # print(ans_one_text)
     ans_two_text = pytesseract.image_to_string(ans_two_enh, lang='chi_sim')
-    print(ans_two_text)
+    # print(ans_two_text)
     ans_thr_text = pytesseract.image_to_string(ans_thr_enh, lang='chi_sim')
-    print(ans_thr_text)
+    # print(ans_thr_text)
     question = question_text
     answers = [ans_one_text, ans_two_text, ans_thr_text]
+    print(answers)
     return question, answers
 
 def getImageFromImageEnhanceForQuestion(image):
