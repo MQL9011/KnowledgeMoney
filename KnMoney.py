@@ -19,6 +19,12 @@ zscr_answer_one_loca = "100, 195, 270, 35"
 zscr_answer_two_loca = "100, 255, 270, 35"
 zscr_answer_thr_loca = "100, 315, 270, 35"
 
+#网易新闻截图坐标
+wyxw_ques_loca       = "90, 165, 310, 80"
+wyxw_answer_one_loca = "100, 195, 270, 35"
+wyxw_answer_two_loca = "100, 255, 270, 35"
+wyxw_answer_thr_loca = "100, 315, 270, 35"
+
 #other
 questions = []
 
@@ -160,7 +166,7 @@ def startPlay(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_th
 
 
 def main():
-    index = input(' 1.冲顶大会 \n 2.百万英雄 \n 3.芝士超人\n请选择玩哪个: \n')
+    index = input(' 1.冲顶大会 \n 2.百万英雄 \n 3.芝士超人\n 4.网易新闻\n请选择玩哪个: \n')
     if index == '1':
         input('冲顶大会_题目出现后按回车开始识别!')
 
@@ -173,6 +179,10 @@ def main():
         input('芝士超人_题目出现后按回车开始识别!')
 
         startPlay(zscr_ques_loca, zscr_answer_one_loca, zscr_answer_two_loca, zscr_answer_thr_loca)
+    elif index == '4':
+        input('网易新闻_题目出现后按回车开始识别!')
+
+        startPlay(wyxw_ques_loca, wyxw_answer_one_loca, wyxw_answer_two_loca, zscr_answer_thr_loca)
     else:
         print('重选!')
         main()
