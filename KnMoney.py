@@ -94,7 +94,7 @@ def getImgFromScreenCaptureAgain(ques, ans_one, ans_two, ans_thr):
     # print(ans_thr_text)
     question = question_text
     answers = [ans_one_text, ans_two_text, ans_thr_text]
-    print(answers)
+    # print(answers)
     return question, answers
 
 def getImageFromImageEnhanceForQuestion(image):
@@ -157,11 +157,7 @@ def start_browser_and_search(question, answers, opBrowserFlag):
     if opBrowserFlag == True:
         print('true')
         m1 = Thread(methods.run_algorithm(0, question, answers))
-        m2 = Thread(methods.run_algorithm(1, question, answers))
-        m3 = Thread(methods.run_algorithm(2, question, answers))
         m1.start()
-        m2.start()
-        m3.start()
     else:
         print('false')
         m2 = Thread(methods.run_algorithm(1, question, answers))
@@ -178,7 +174,7 @@ def testPlay():
     question = '以下哪个不是清华大学的代表校花'
     # answers = ['三个', '四个', '五个']
     answers = ['紫荆', '山茶花', '丁香']
-    print(question)
+    print('问题:  ' + question)
     print('1 %s'% answers[0])
     print('2 %s'% answers[1])
     print('3 %s'% answers[2])
@@ -191,7 +187,7 @@ def startPlay(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_th
             question, answers = getImgFromScreenCapture(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_thr_loadtion)
             start_browser_and_search(question, answers, True)
             question_again, answers_again = getImgFromScreenCaptureAgain(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_thr_loadtion)
-            start_browser_and_search(question, answers, False)
+            start_browser_and_search(question_again, answers_again, False)
             input('已暂停,按任意键继续')
             # input('%s \n %s' % (question,answers))
             time.sleep(1)
