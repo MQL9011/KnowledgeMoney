@@ -25,6 +25,12 @@ wyxw_answer_one_loca = "100, 215, 270, 35"
 wyxw_answer_two_loca = "100, 275, 270, 35"
 wyxw_answer_thr_loca = "100, 345, 270, 35"
 
+#UC浏览器截图坐标
+uc_ques_loca       = "90, 140, 290, 80"
+uc_answer_one_loca = "118, 240, 220, 35"
+uc_answer_two_loca = "118, 310, 220, 35"
+uc_answer_thr_loca = "118, 380, 220, 35"
+
 #other
 questions = []
 
@@ -198,7 +204,7 @@ def startPlay(questionLocation,answer_one_loadtion,answer_two_loadtion,answer_th
 
 
 def main():
-    index = input(' 1.冲顶大会 \n 2.百万英雄 \n 3.芝士超人\n 4.网易新闻\n请选择玩哪个: \n')
+    index = input(' 1.冲顶大会 \n 2.百万英雄 \n 3.芝士超人\n 4.网易新闻\n 5.UC浏览器\n请选择玩哪个: \n')
     if index == '1':
         input('冲顶大会_题目出现后按回车开始识别!')
 
@@ -215,6 +221,9 @@ def main():
         input('网易新闻_题目出现后按回车开始识别!')
 
         startPlay(wyxw_ques_loca, wyxw_answer_one_loca, wyxw_answer_two_loca, zscr_answer_thr_loca)
+    elif index == '5':
+        input('UC浏览器_题目出现后按回车开始识别!')
+        startPlay(uc_ques_loca, uc_answer_one_loca, uc_answer_two_loca, uc_answer_thr_loca)
     else:
         print('重选!')
         main()
