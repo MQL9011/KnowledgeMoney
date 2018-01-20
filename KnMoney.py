@@ -26,16 +26,16 @@ wyxw_answer_two_loca = "100, 275, 270, 35"
 wyxw_answer_thr_loca = "100, 345, 270, 35"
 
 #UC浏览器截图坐标
-uc_ques_loca       = "90, 140, 290, 80"
+uc_ques_loca       = "90, 145, 290, 80"
 uc_answer_one_loca = "118, 240, 220, 35"
 uc_answer_two_loca = "118, 310, 220, 35"
 uc_answer_thr_loca = "118, 380, 220, 35"
 
 #大白汽车截图坐标
 dbqc_ques_loca       = "80, 155, 290, 80"
-dbqc_answer_one_loca = "130, 240, 220, 35"
+dbqc_answer_one_loca = "130, 230, 220, 35"
 dbqc_answer_two_loca = "130, 290, 220, 35"
-dbqc_answer_thr_loca = "130, 340, 220, 35"
+dbqc_answer_thr_loca = "130, 350, 220, 35"
 
 #other
 questions = []
@@ -161,17 +161,15 @@ def get_answer():
 
 
 def start_browser_and_search(question, answers, opBrowserFlag):
-    print('拉起浏览器    ' + datetime.datetime.now().strftime('%H:%M:%S'))
-    print('问题:  ' + question)
-    print('1 %s'% answers[0])
-    print('2 %s'% answers[1])
-    print('3 %s'% answers[2])
     if opBrowserFlag == True:
-        print('true')
+        print('拉起浏览器    ' + datetime.datetime.now().strftime('%H:%M:%S'))
+        print('问题:  ' + question)
         m1 = Thread(methods.run_algorithm(0, question, answers))
         m1.start()
     else:
-        print('false')
+        print('1 %s'% answers[0])
+        print('2 %s'% answers[1])
+        print('3 %s'% answers[2])
         m2 = Thread(methods.run_algorithm(1, question, answers))
         m3 = Thread(methods.run_algorithm(2, question, answers))
         m2.start()
