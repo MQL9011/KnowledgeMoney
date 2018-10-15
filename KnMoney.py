@@ -1,23 +1,23 @@
 ﻿# coding: utf-8
 
-#需要自行修改截图Frame "x, y, w, h "
+#需要自行修改截图Frame "x, y, w, h ", 不带空格
 #冲顶大会截图坐标
-cddh_ques_loca       = "70, 150, 310, 120"
-cddh_answer_one_loca = "100, 275, 270, 35"
-cddh_answer_two_loca = "100, 330, 270, 35"
-cddh_answer_thr_loca = "100, 376, 270, 35"
+cddh_ques_loca       = "70,150,310,120"
+cddh_answer_one_loca = "100,326,270,35"
+cddh_answer_two_loca = "100,376,270,35"
+cddh_answer_thr_loca = "100,426,270,35"
 
 #百万英雄截图坐标
-bwyy_ques_loca       = "70, 115, 310, 130"
-bwyy_answer_one_loca = "100, 265, 270, 35"
-bwyy_answer_two_loca = "100, 330, 270, 35"
-bwyy_answer_thr_loca = "100, 390, 270, 35"
+bwyy_ques_loca       = "70,115,310,130"
+bwyy_answer_one_loca = "100,265,270,35"
+bwyy_answer_two_loca = "100,330,270,35"
+bwyy_answer_thr_loca = "100,390,270,35"
 
 #芝士超人截图坐标
-zscr_ques_loca       = "70, 95, 310, 90"
-zscr_answer_one_loca = "100, 195, 270, 35"
-zscr_answer_two_loca = "100, 255, 270, 35"
-zscr_answer_thr_loca = "100, 315, 270, 35"
+zscr_ques_loca       = "70,95,310,90"
+zscr_answer_one_loca = "100,195,270,35"
+zscr_answer_two_loca = "100,255,270,35"
+zscr_answer_thr_loca = "100,315,270,35"
 
 #网易新闻截图坐标
 wyxw_ques_loca       = "90, 165, 310, 70"
@@ -56,10 +56,10 @@ import os
 import methods
 
 def getImgFromScreenCapture(ques, ans_one, ans_two, ans_thr):
-    question = os.system("screencapture -R \" {} \" ./question_screenshot.png".format(ques))
-    answer_one = os.system("screencapture -R \"{}\" ./answers_one.png".format(ans_one))
-    answer_two = os.system("screencapture -R \"{}\" ./answers_two.png".format(ans_two))
-    answer_thr = os.system("screencapture -R \"{}\" ./answers_thr.png".format(ans_thr))
+    question = os.system("screencapture -R {} ./question_screenshot.png".format(ques))
+    answer_one = os.system("screencapture -R {} ./answers_one.png".format(ans_one))
+    answer_two = os.system("screencapture -R {} ./answers_two.png".format(ans_two))
+    answer_thr = os.system("screencapture -R {} ./answers_thr.png".format(ans_thr))
 
     question_img = Image.open("./question_screenshot.png")
     answer_one_img = Image.open("./answers_one.png")
@@ -211,7 +211,9 @@ def main():
     index = input(' 1.冲顶大会 \n 2.百万英雄 \n 3.芝士超人\n 4.网易新闻\n 5.UC浏览器\n 6.大白汽车\n请选择玩哪个: \n')
     if index == '1':
         input('冲顶大会_题目出现后按回车开始识别!')
+        # print('{},{},{},{}'.format(cddh_ques_loca,cddh_answer_one_loca,cddh_answer_two_loca,cddh_answer_thr_loca))
         startPlay(cddh_ques_loca, cddh_answer_one_loca, cddh_answer_two_loca, cddh_answer_thr_loca)
+        input('')
     elif index == '2':
         input('百万英雄_题目出现后按回车开始识别!')
         startPlay(bwyy_ques_loca, bwyy_answer_one_loca, bwyy_answer_two_loca, bwyy_answer_thr_loca)
