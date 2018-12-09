@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+certifi = "==2017.11.5"
+chardet = "==3.0.4"
+facebook-wda = "==0.2.2.dev1"
+google-api-python-client = "==1.6.4"
+"httplib2" = "==0.10.3"
+idna = "==2.6"
+"oauth2client" = "==4.1.2"
+"pyasn1" = "==0.4.2"
+"pyasn1-modules" = "==0.2.1"
+pytesseract = "==0.1.7"
+requests = "==2.18.4"
+rsa = "==3.4.2"
+six = "==1.11.0"
+uritemplate = "==3.0.0"
+"urllib3" = "==1.22"
+Pillow = "==5.0.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
