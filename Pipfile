@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-certifi = "==2017.11.5"
+certifi = "==2022.12.7"
 chardet = "==3.0.4"
 facebook-wda = "==0.2.2.dev1"
 google-api-python-client = "==1.6.4"
